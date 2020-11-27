@@ -59,8 +59,10 @@ def results():
         else:
             filename.write("{} no restriction sites for {}\n \n".format(r['id'], r['enzyme']))
     filename.close()
-    columns = ['sequence name','enzyme','location','fragments']
-    df = pd.DataFrame(restriction_digest, columns=columns)
+    df = pd.DataFrame(restriction_digest)
+    df.columns = ['enzyme','fragments','sequence name', 'location']
+    df = df[['sequence name', 'enzyme', 'location', 'fragments']]
+    print(df.head())
     df.to_csv(args.output + ".csv", sep='\t', index=False)
 
 def verbose():
