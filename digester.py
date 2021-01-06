@@ -61,9 +61,6 @@ def results():
     filename.close()
     df = pd.DataFrame(restriction_digest)
     df.columns = ['enzyme','fragments','sequence name', 'location']
-    df = df[['sequence name', 'enzyme', 'location', 'fragments']]
-    print(df.head())
-    df.to_csv(args.output + ".csv", sep='\t', index=False)
 
 def verbose():
     seq_num = parse_seq(args.input)
@@ -94,6 +91,5 @@ if __name__ == '__main__':
     if args.verbose:
         verbose()
     
-#    digest()
     results()
 
